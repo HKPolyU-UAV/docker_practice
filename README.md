@@ -74,7 +74,7 @@ Skip the setup description and go [here](#what-you-should-test) if you are in ru
    
 
 
-## What have we done (PART II - Coding Setup).
+## What have we done (PART II - Connection Setup).
 ### You don't need to do anything here yet!
 We reckon that people will need to perform files modification on-site, and hence we have setup a ssh practice so that you could visualize your code. Below are the things that were done:
 
@@ -215,3 +215,9 @@ So far, we have be blabbering for quite awhile. It's high time for you to do som
     # basically allow you to publish your image
     ```
 4. The learning curve of Docker is not steep. We are not very experienced, but were able to pick it up within a week. Just try to search more learning material lah! Have fun Dockering!
+
+## Shoutout
+We would like to give a shoutout to the [Larics Lab](https://github.com/larics) for inspiring us to adopt this practice. Go follow them! They are doing some solid engineering work there!
+
+## Maintainer
+[pattylo](https://github.com/pattylo) @ AIRO-LAB @ RCUAS, HKPolyU
