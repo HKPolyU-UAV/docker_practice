@@ -190,7 +190,7 @@ So far, we have be blabbering for quite awhile. It's high time for you to do som
 6. On vscode, access the files inside the container just as an usual ssh server.
 
 ## Side Note
-1. Basically, you should be able to use it as a normal ubuntu ROS environment, just within a sandbox. Yet, it allows us to setup enviroment on a new machine with only one commandline: i.e., ```docker image pull pattylo/airo_ros_noetic:lala```.
+1. Basically, you should be able to use it as a normal ubuntu ROS environment, just within a sandbox. Again, the main reason for us to use this is that it allows us to setup enviroment on a new machine with only one commandline: i.e., ```docker image pull pattylo/airo_ros_noetic:lala```.
 2. Basically image is like a template of a container. Bear this in mind.
 3. Some useful docker commandline for your reference:
     ```
