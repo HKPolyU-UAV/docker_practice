@@ -123,7 +123,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
    
    After you pull our image 
    
-   (it's ```docker pull pattylo/airo_ros_noetic:lala``` if you have not do so), 
+   (it's ```docker pull pattylo/airo_ros_noetic:lala``` if you have not done so), 
    
    do
    ```
