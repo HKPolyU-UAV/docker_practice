@@ -20,7 +20,7 @@ First do
 docker pull pattylo/airo_ros_noetic:lala
 ```
 
-to download the **airo_ros_noetic** container.
+to download the **airo_ros_noetic** image.
 
 Skip the setup description and go [here](#what-you-should-test) if you are in rush.
 
