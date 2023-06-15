@@ -118,7 +118,7 @@ We reckon that people will need to perform files modification on-site, and hence
 
 ## What you should test.
 ### You need to do something now!
-So far, we have be blabbering for quite awhile. It's high time for you to do something to check!
+So far, we have been blabbering for quite awhile. It's high time for you to do something to check!
 1. **Check container status**
    
    After you pull our image 
