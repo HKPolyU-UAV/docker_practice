@@ -192,7 +192,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
 
     You should be able to access the container by now. Now, you own a tiny OS within your OS, isn't it interesting?
 
-6. On vscode, access the files inside the container just as an usual ssh server.
+6. On VScode, access the files inside the container just as an usual ssh server. If you are from AIRO-lab, we strongly you to go through this tutorial [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/vscode_github/vscode_github.md).
 7. As mentioned above, if you want to use ngrok to remote ssh from anywhere, please do the following:
    
    - If you do not have a ngrok account, please register one.
