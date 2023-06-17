@@ -112,7 +112,12 @@ We reckon that people will need to perform files modification on-site, and hence
    gedit /ros_entrypoint.sh
    # add "service ssh restart"
    ```
-6. **In short**
+
+6. **ngrok**
+   
+   **ngrok** is a software to provide internet and server connectivity via third-party service, which provides a variety of internet functionalities. Yet in here, we use it for remote connection to containers, i.e., we are allowed to penetrate your container through public domain without staying in the same local network. Visit [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/remote/Remote.md) for more.
+
+7. **In short**
    
    We did a few thing to enable SSH server. 
 
@@ -188,11 +193,24 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
     You should be able to access the container by now. Now, you own a tiny OS within your OS, isn't it interesting?
 
 6. On vscode, access the files inside the container just as an usual ssh server.
+7. As mentioned above, if you want to use ngrok to remote ssh from anywhere, please do the following:
+   
+   - If you do not have a ngrok account, please register one.
+   - After getting one, please do ```ngrok config add-authtoken <your_token>```
+   - At the entering file location, do ```./ngrok```.
+   - Check the forwarding line , and get the port number; on another random machine (within/out LAN), do 
+  
+      ```ssh root@0.tcp.ap.ngrok.io -p {port_number} ```
+
+      ![alt text](media/ngrok.jpg)
+   - Also try it in vscode, and see whether you are able to visualize all the code.
+   - Voila! With all these, you should be able to code anywhere and anytime.
 
 ## Side Note
 1. Basically, you should be able to use it as a normal ubuntu ROS environment, just within a sandbox. Again, the main reason for us to use this is that it allows us to setup enviroment on a new machine with only one commandline: i.e., ```docker image pull pattylo/airo_ros_noetic:lala```.
 2. Basically image is like a template of a container. Bear this in mind.
-3. Some useful docker commandline for your reference:
+3. As you will be launching a lot of terminals within a container, it will be stupid to do ```docker exec``` all the time, and thus, ```tmux``` is recommended. Some very preliminary notes are mentioned [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/tmux/tmux.md).
+4. Some useful docker commandline for your reference:
     ```
     docker image pull {image_name} # pull an image
     docker run -blah_blah {image_name} # run an image and create a container
@@ -201,6 +219,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
     
     docker start {container_name} # start container
     docker attach {container_name} # attach to a container, namely, get inside the container
+    docker exec -it {container_name} /bin/bash # attach to the same container without echoing the same commandline
     exit # exit container
 
     docker commit {container_name} {new_image_name} 
@@ -214,7 +233,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
     docker push {username}/{remote_image_name}
     # basically allow you to publish your image
     ```
-4. The learning curve of Docker is not steep. We are not very experienced, but were able to pick it up within a week. Just try to search more learning material lah! Have fun Dockering!
+5. The learning curve of Docker is not steep. We are not very experienced, but were able to pick it up within a week. Just try to search more learning material lah! Have fun Dockering!
 
 ## Shoutout
 We would like to give a shoutout to the [Larics Lab](https://github.com/larics) for inspiring us to adopt this practice. Go follow them! They are doing some solid engineering work there!
