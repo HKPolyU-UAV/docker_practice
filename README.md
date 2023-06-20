@@ -70,7 +70,7 @@ Skip the setup description and go [here](#what-you-should-test) if you are in ru
    realsense-ros-wrapper
    PX4-AutoPilot @ Gazebo
    ```
-   For GPU-utilization, we will create another independent container for that @ [TBC](/hahhaha).
+   For GPU-utilization, we will create another independent container for that @ [TBC](/gpu.md).
    
 
 
@@ -153,7 +153,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
    The time might not be right, but it is not really important at this stage.
 3. **Check hardware connection** 
    
-   In the docker run file, we have specified ```-v/dev:/dev```, which gives basically all USB access to container. 
+   In the docker run file, we have specified ```-v/dev:/dev```, which gives basically all USB, video and so on... access to container. 
    
     The easiest way to confirm the connection is to run ```roslaunch realsense2_camera rs_camera.launch```, and outside container simply do ```rqt_image_view``` to check the message.
 
@@ -205,6 +205,7 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
       ![alt text](media/ngrok.jpg)
    - Also try it in vscode, and see whether you are able to visualize all the code.
    - Voila! With all these, you should be able to code anywhere and anytime.
+
 
 ## Side Note
 1. Basically, you should be able to use it as a normal ubuntu ROS environment, just within a sandbox. Again, the main reason for us to use this is that it allows us to setup enviroment on a new machine with only one commandline: i.e., ```docker image pull pattylo/airo_ros_noetic:lala```.
