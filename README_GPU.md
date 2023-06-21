@@ -156,7 +156,8 @@ The following is just a brief description of what I have done to this our machin
    and do
 
    ```
-   cmake -D CMAKE_BUILD_TYPE=RELEASE \
+   print(cv2.getBuildInformation())
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D WITH_TBB=ON \
     -D ENABLE_FAST_MATH=1 \
@@ -166,7 +167,7 @@ The following is just a brief description of what I have done to this our machin
     -D BUILD_opencv_cudacodec=OFF \
     -D WITH_CUDNN=ON \
     -D OPENCV_DNN_CUDA=ON \
-    -D CUDA_ARCH_BIN=8.6 \
+    -D CUDA_ARCH_BIN=8.6 \ # should be your own compute capability
     -D WITH_V4L=ON \
     -D WITH_QT=OFF \
     -D WITH_OPENGL=ON \
@@ -174,11 +175,10 @@ The following is just a brief description of what I have done to this our machin
     -D OPENCV_GENERATE_PKGCONFIG=ON \
     -D OPENCV_PC_FILE_NAME=opencv.pc \
     -D OPENCV_ENABLE_NONFREE=ON \
-    -D PYTHON_EXECUTABLE=$(which python3) \ 
     -D OPENCV_PYTHON3_INSTALL_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
-    -D PYTHON3_INCLUDE_DIR=$(python3 -c "from distutils.sysconfig import get_python_inc;  print(get_python_inc())") \ 
     -D PYTHON3_PACKAGES_PATH=$(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
-    -D OPENCV_EXTRA_MODULES_PATH=/home/Downloads/opencv_contrib-4.7.0/modules \
+    -D PYTHON_EXECUTABLE=$(which python3) \
+    -D OPENCV_EXTRA_MODULES_PATH=/home/Downloads/opencv_contrib-4.7.0/modules \ # please set the right path to contrib modules
     -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D INSTALL_C_EXAMPLES=OFF \
     -D BUILD_EXAMPLES=OFF ..
@@ -189,19 +189,32 @@ The following is just a brief description of what I have done to this our machin
    ```
    nproc
    make -j{no_of_cores}
-   sudo make install
    ```
 
-   and do
+   Wait...and when finish do
    ```
+    sudo make install
     sudo /bin/bash -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
     sudo ldconfig
    ```
 
+   Then we confirm the installation
+   ```
+   python3 -c "import cv2; print(cv2.getBuildInformation())"
+   ```
+   Below shows the results, in which CUDA and cuDNN should show "YES":
+   ![alt text](media/opencv_results.jpg)
 
-   
-8. 
-   
-   Then we install cudnn.
+## Sidenote
+Please note that the above settings are for **OUR MACHINE**, and the configurations differ from computer to computer. Also, if you wanna follow the above procedures to setup your own docker, please do understand what exactly does each commandline do. Please do not blame us if you screw up your own environment. **YOUR MACHINE, YOUR RESPONSIBILITY**. 
 
-9.  df
+Although we seem mean, but feel free to drop a discussion message with us.
+
+## Reference
+- https://linuxhint.com/install-nvidia-drivers-on-ubuntu/
+- https://linuxhint.com/use-nvidia-gpu-docker-containers-ubuntu-22-04-lts/ 
+- https://medium.com/@pydoni/how-to-install-cuda-11-4-cudnn-8-2-opencv-4-5-on-ubuntu-20-04-65c4aa415a7b
+
+## Maintainer
+[pattylo](https://github.com/pattylo) @ AIRO-LAB @ RCUAS, HKPolyU
+
