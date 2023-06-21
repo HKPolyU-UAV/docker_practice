@@ -162,23 +162,15 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
  
 4.  **Check external connection** 
    
-    First download telnet, it allows you to check the connection with a specified port. 
-
-    Do the following to check ```IP_ADDRESS```.
-    ```
-    ifconfig
-    ```
-    ![alt text](media/ifconfig.jpg)
-
-    Then, **outside** your container, do
+    First download telnet, it allows you to check the connection with a specified port. Then, **outside** your container, do
     ```
     sudo apt install telnet
-    telnet {IP_ADDRESS} 6666
+    telnet 127.0.0.1 6666
     ```
     You should get something like below which shows:
     ```
-    Trying {IP_ADDRESS}
-    Connected to {IP_ADDRESS}
+    Trying 127.0.0.1
+    Connected to 127.0.0.1
     ```
 
     ![alt text](media/telnet.jpg)
