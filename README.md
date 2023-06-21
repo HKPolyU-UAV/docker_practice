@@ -176,16 +176,26 @@ So far, we have been blabbering for quite awhile. It's high time for you to do s
     ![alt text](media/telnet.jpg)
     Within the image, LHS shows container, whilst RHS shows telnet connection status.
 
-5. So far so good? Now, on any laptop within the same local network, try to do:
+5. So far so good? Now, ssh to docker with:
+    ```
+    ssh root@127.0.0.1 -p 6666
+    # passcode 0000
+    ```
+   Or on any laptop within the same local network, try to do:
     ```
     ssh root@{IP_ADDRESS} -p 6666
     # passcode 0000
     ```
-
+   Do the following to check ```IP_ADDRESS```.
+    ```
+    ifconfig
+    ```
+    ![alt text](media/ifconfig.jpg)
+   
     You should be able to access the container by now. Now, you own a tiny OS within your OS, isn't it interesting?
 
-6. On VScode, access the files inside the container just as an usual ssh server. If you are from AIRO-lab, we strongly you to go through this tutorial [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/vscode_github/vscode_github.md).
-7. As mentioned above, if you want to use ngrok to remote ssh from anywhere, please do the following:
+7. On VScode, access the files inside the container just as an usual ssh server. If you are from AIRO-lab, we strongly you to go through this tutorial [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/vscode_github/vscode_github.md).
+8. As mentioned above, if you want to use ngrok to remote ssh from anywhere, please do the following:
    
    - If you do not have a ngrok account, please register one.
    - After getting one, please do ```ngrok config add-authtoken <your_token>```
