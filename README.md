@@ -17,10 +17,10 @@ Refer to this [site](https://docs.docker.com/engine/install/ubuntu/), you can in
 First do 
 
 ```
-docker pull pattylo/airo_ros_noetic:lala
+./lala.sh
 ```
 
-to download the **airo_ros_noetic** image.
+This will pull the **airo_ros_noetic** image.
 
 Skip the setup description and go [here](#what-you-should-test) if you are in rush.
 
