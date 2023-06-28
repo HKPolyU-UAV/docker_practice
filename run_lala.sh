@@ -16,5 +16,5 @@ sudo docker run \
   --env DISPLAY=$DISPLAY \
   --env TERM=xterm-256color \
   -v /dev:/dev \
-  icuas23_competition:lala \
+  airo_noetic:lala \
   /bin/bash 
