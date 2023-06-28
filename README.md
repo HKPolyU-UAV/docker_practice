@@ -29,7 +29,21 @@ echo -e "0000\n0000" | passwd root
 ```
 to set the root passcode.
 You can refer to [Dockerfile.lala](/Dockerfile.lala) to see what building arguments we put there.
-If you want a more detailed description, please refer to [this](/README_legacy.md).
+After the image is built, a few things could be used directly:
+```
+tmux
+ros
+mavros
+PX4 firmware + Gazebo simulation
+ngrok
+ssh
+VScode remote (through ssh or ngrok)
+```
+Also, if you want to just do docker pull, you can always do:
+```
+docker pull pattylo/airo_ros_noetic:lala
+```
+If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
 
 
 
