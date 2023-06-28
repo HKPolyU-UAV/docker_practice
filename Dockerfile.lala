@@ -1,0 +1,50 @@
+FROM osrf/ros:noetic-desktop-full
+
+ARG HOME=/root
+
+# Pre-requisite
+RUN sudo apt-get update && sudo apt-get -y upgrade 
+RUN sudo apt-get -y install tmux curl wget curl net-tools git nano
+
+# ROS
+RUN sudo apt-get update
+RUN sudo apt-get -y install ros-noetic-desktop-full
+RUN rosdep update
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+# RUN source /root/.bashrc
+
+# mavros
+RUN sudo apt-get -y install ros-noetic-mavros ros-noetic-mavros-extras ros-noetic-mavros-msgs libncurses5-dev python3-pip libgstreamer1.0-dev python-jinja2 python3-pip python3-testresources libignition-math4 libgazebo11-dev
+RUN sudo apt-get -y upgrade libignition-math4
+RUN wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+RUN sudo bash ./install_geographiclib_datasets.sh
+
+# PX4
+WORKDIR $HOME
+RUN git clone https://github.com/PX4/PX4-Autopilot.git
+WORKDIR $HOME/PX4-Autopilot
+RUN git checkout 71db090
+RUN git submodule sync --recursive
+RUN git submodule update --init --recursive
+RUN bash ./Tools/setup/ubuntu.sh
+RUN sudo apt-get upgrade libignition-math4
+
+# SSH
+RUN sudo apt-get update
+RUN sudo apt-get -y install openssh-server
+# RUN echo -e "0000\n0000" | passwd root
+RUN sudo echo "PermitRootLogin Yes" >> /etc/ssh/sshd_config
+RUN sed -i 's/\(^Port\)/#\1/' /etc/ssh/sshd_config && echo Port 6666 >> /etc/ssh/sshd_config
+RUN sed -i '4i\service ssh start' /ros_entrypoint.sh 
+
+# NGROK
+WORKDIR /
+RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+RUN touch ngrok.sh
+RUN echo "cd /usr/local/bin">> /ngrok.sh
+RUN echo "./ngrok tcp 6666">> /ngrok.sh
+RUN chmod +x ngrok.sh
+
+WORKDIR $HOME
+
+

@@ -17,25 +17,124 @@ Refer to this [site](https://docs.docker.com/engine/install/ubuntu/), you can in
 First do 
 
 ```
-./run_lala.sh
-```
-This will build the docker image. Then, to create one container, do
-```
 ./lala.sh
 ```
-After entering the docker container, input
-```
-echo -e "0000\n0000" | passwd root
-```
-to set the root passcode.
-You can refer to [Dockerfile.lala](/Dockerfile.lala) to see what building arguments we put there.
-If you want a more detailed description, please refer to [this](/README_legacy.md).
+
+This will pull the **airo_ros_noetic** image.
+
+Skip the setup description and go [here](#what-you-should-test) if you are in rush.
+
+## What we have done (PART I - Setup).
+### You don't need to do anything here yet!
+   
+1. **Layered upon other image**
+   
+   We docker pull a ros-noetic-image
+    ```
+    docker pull osrf/ros:noetic-desktop-full
+    ```
+2. **Setup network and hardware connection**
+   
+   To allow all hardware and software communication between the host and the container, we run a shell script to fire up the image. The container is launch through this [file](/lala_noetic.sh).
+   
+3. **Install shit that we need**
+   
+   We then install some usefull packages 
+   ```
+   sudo apt updage
+   sudo apt gra
+   sudo apt install tmux
+   sudo apt install x11-apps #this one pretty useless though
+   sudo apt install cmake-gui
+   sudo apt install wget
+   sudo apt install curl
+   .
+   .
+   .
+   # and a few I am too lazy to type it out, 
+   # go to the .bash_history file in the container to check it your self.
+   ```
+4. **Install more shit**
+   
+   We then try to install some ros packages: [RealSense_ROS_wrapper](https://github.com/IntelRealSense/realsense-ros/tree/ros1-legacy),[E2ES](https://github.com/HKPolyU-UAV/E2ES), and [yolo_ros_plugin](https://github.com/HKPolyU-UAV/yolo_ros_plugin). All packages ran smoothly, and communication (visualization showcase and data transmission) between host and container was all good.
+
+5. **In short**
+   
+   Just to be clear, below lists main packages that we have installed:
+   ```
+   ros-noetic-full-desktop
+   OpenCV 4.5.5
+   mavros
+   mavros
+   librealsense
+   realsense-ros-wrapper
+   PX4-AutoPilot @ Gazebo
+   ```
+   For GPU-utilization, we will create another independent container for that @ [TBC](/gpu.md).
+   
 
 
+## What have we done (PART II - Connection Setup).
+### You don't need to do anything here yet!
+We reckon that people will need to perform files modification on-site, and hence we have setup a ssh practice so that you could visualize your code. Below are the things that were done:
+
+1. **Install SSH**
+   ```
+   sudo apt update
+   sudo apt install openssh-server
+   sudo apt install net-tools
+   ```
+2. **Change root passcode**
+   ```
+   passwd root
+   # 0000
+   ```
+3. **Modify sshd_config to allow remote access**
+   ```
+   gedit /etc/ssh/sshd_config
+   # add "PermitRootLogin Yes" into the file
+   ```
+4. **Modify more related to ssh**
+   
+   As our container is bundled with the host network, the default ssh port should be change, so that the container could be ssh-able.
+   ```
+    sed -i 's/\(^Port\)/#\1/' /etc/ssh/sshd_config && echo Port 6666 >> /etc/ssh/sshd_config
+   ```
+   So now the port number for SSH is 6666.
+5. **SSH automation**
+   
+   Start SSH automatically. SSH can be start manually via
+   ```
+   service ssh start
+   ````
+   Yet it is stupid not to mention inconvenient to do this repeatedly when you start your container, so we did:
+   ```
+   gedit /ros_entrypoint.sh
+   # add "service ssh restart"
+   ```
+
+6. **ngrok**
+   
+   **ngrok** is a software to provide internet and server connectivity via third-party service, which provides a variety of internet functionalities. Yet in here, we use it for remote connection to containers, i.e., we are allowed to penetrate your container through public domain without staying in the same local network. Visit [here](https://github.com/HKPolyU-UAV/useful_tools/blob/main/remote/Remote.md) for more.
+
+7. **In short**
+   
+   We did a few thing to enable SSH server. 
 
 ## What you should test.
 ### You need to do something now!
+So far, we have been blabbering for quite awhile. It's high time for you to do something to check!
 1. **Check container status**
+   
+   After you pull our image 
+   
+   (it's ```docker pull pattylo/airo_ros_noetic:lala``` if you have not done so), 
+   
+   do
+   ```
+   source lala.sh 
+   ```
+   [lala.sh](./lala.sh) is a shell script file from this repo. A container should be generated. 
    
    Check whether the container is up by
    ```
@@ -56,7 +155,7 @@ If you want a more detailed description, please refer to [this](/README_legacy.m
    
    In the docker run file, we have specified ```-v/dev:/dev```, which gives basically all USB, video and so on... access to container. 
    
-    The easiest way to confirm the connection is to run ```rqt_image_view``` to check the message.
+    The easiest way to confirm the connection is to run ```roslaunch realsense2_camera rs_camera.launch```, and outside container simply do ```rqt_image_view``` to check the message.
 
     You can also try to do ```ls /dev/tty``` to check whether the ttl serial is connected.
    
