@@ -17,11 +17,11 @@ Refer to this [site](https://docs.docker.com/engine/install/ubuntu/), you can in
 First do 
 
 ```
-./run_lala.sh
+./build_lala.sh
 ```
 This will build the docker image. Then, to create one container, do
 ```
-./lala.sh
+./run_lala.sh
 ```
 After entering the docker container, input
 ```
