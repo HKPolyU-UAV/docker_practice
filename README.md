@@ -14,21 +14,19 @@ Below will first briefly elucidate what we have done to this poor image, and how
 ## Prerequisite
 Refer to this [site](https://docs.docker.com/engine/install/ubuntu/), you can install Docker Engine by following the setup bash command. In Ubuntu, we do not really need Docker Desktop. As we are not considerate people, we will not repeat the installation process here.
 
-First do 
+First do the following.
+You could either do ```./build_lala.sh --raw```, or ```./build_lala.sh --swift```. The former will just simply repeat the building processing of the construction of ```airo_noetic:lala```, whereas the later could allow you to customize your own docker image based upon ```airo_noetic:lala``` and modify beyond.
 
+Then, to create one container, do
 ```
-./build_lala.sh
-```
-This will build the docker image. Then, to create one container, do
-```
-./run_lala.sh
+./run_lala.sh --{build_arg} # build_arg = raw || swift
 ```
 After entering the docker container, input
 ```
 echo -e "0000\n0000" | passwd root
 ```
 to set the root passcode.
-You can refer to [Dockerfile.lala](/Dockerfile.lala) to see what building arguments we put there.
+You can refer to [Dockerfile.lala](/Dockerfile.raw) to see what building arguments we put there.
 After the image is built, a few things could be used directly:
 ```
 tmux
@@ -39,12 +37,8 @@ ngrok
 ssh
 VScode remote (through ssh or ngrok)
 ```
-Also, if you want to just do docker pull, you can always do:
-```
-docker pull pattylo/airo_ros_noetic:lala
-```
-If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
 
+If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
 
 
 ## What you should test.
