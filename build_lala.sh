@@ -5,14 +5,14 @@ distro="swift"
 for (( i=1; i<=$#; i++));
 do
   param="${!i}"
-  echo $param
-
+  
   if [ "$param" == "--swift" ]; then
     distro="swift"
-  fi
-
-  if [ "$param" == "--raw" ]; then
+  elif [ "$param" == "--raw" ]; then
     distro="raw"
+  else
+    n=${#param}
+    distro=${param:2:${n}}
   fi
 
 done
