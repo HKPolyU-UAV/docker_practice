@@ -11,8 +11,7 @@ do
   elif [ "$param" == "--raw" ]; then
     distro="raw"
   else
-    n=${#param}
-    distro=${param:2:${n}}
+    distro=${param:2:${#param}}
   fi
 
 done
