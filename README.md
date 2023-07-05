@@ -12,33 +12,40 @@ Below will first briefly elucidate what we have done to this poor image, and how
 </p>
 
 ## Prerequisite
-Refer to this [site](https://docs.docker.com/engine/install/ubuntu/), you can install Docker Engine by following the setup bash command. In Ubuntu, we do not really need Docker Desktop. As we are not considerate people, we will not repeat the installation process here.
 
-First do the following.
-You could either do ```./build_lala.sh --raw```, or ```./build_lala.sh --swift```. The former will just simply repeat the building processing of the construction of ```airo_noetic:lala```, whereas the later could allow you to customize your own docker image based upon ```airo_noetic:lala``` and modify beyond.
+1. **Refer to this [site](https://docs.docker.com/engine/install/ubuntu/) to install**.
 
-Then, to create one container, do
-```
-./run_lala.sh --{build_arg} # build_arg = raw || swift
-```
-After entering the docker container, input
-```
-echo -e "0000\n0000" | passwd root
-```
-to set the root passcode.
-You can refer to [Dockerfile.lala](/Dockerfile.raw) to see what building arguments we put there.
-After the image is built, a few things could be used directly:
-```
-tmux
-ros
-mavros
-PX4 firmware + Gazebo simulation
-ngrok
-ssh
-VScode remote (through ssh or ngrok)
-```
+   You can install Docker Engine by following the setup bash command. In Ubuntu, we do not really need Docker Desktop. As we are not considerate people, we will not repeat the installation process here.
 
-If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
+2. **First either do ```./build_lala.sh --raw```, or ```./build_lala.sh --swift```.**
+
+   The former will just simply repeat the building processing of the construction of ```airo_noetic:lala```, whereas the later could allow you to customize your own docker image based upon ```airo_noetic:lala``` and modify beyond.
+
+3. **Then, to create one container, do```./run_lala.sh --{build_arg} # build_arg = raw || swift```.**
+
+
+4. **Change passcode.**
+
+   After entering the docker container, input
+   ```
+   echo -e "0000\n0000" | passwd root
+   ```
+   to set the root passcode.
+   
+5. (Optional)
+   You can refer to [Dockerfile.lala](/Dockerfile.raw) to see what building arguments we put there.
+   After the image is built, a few things could be used directly:
+   ```
+   tmux
+   ros
+   mavros
+   PX4 firmware + Gazebo simulation
+   ngrok
+   ssh
+   VScode remote (through ssh or ngrok)
+   ```
+
+   If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
 
 
 ## What you should test.
@@ -74,10 +81,15 @@ If you want a more detailed description of the above image, please refer to [thi
     First download telnet, it allows you to check the connection with a specified port. 
 
     Do the following to check ```IP_ADDRESS```.
+
+    **Note That ```IP_ADDRESS``` here could either be:** 
+      1. ```localhost(127.0.0.1)```
+      2. ```LAN Address```
+      3. ```WAN third party URL```
     ```
     ifconfig
     ```
-    ![alt text](media/ifconfig.jpg)
+    ![alt text](media/localhost.png)
 
     Then, **outside** your container, do
     ```
