@@ -1,23 +1,39 @@
 echo "BUILD AIRO DOCKER IMAGE"
 
-distro="swift"
+distro=""
 
-for (( i=1; i<=$#; i++));
-do
-  param="${!i}"
-  
-  if [ "$param" == "--swift" ]; then
-    distro="swift"
-  elif [ "$param" == "--raw" ]; then
-    distro="raw"
-  else
-    distro=${param:2:${#param}}
-  fi
+echo "GOT GPU? y/n:"
+read got_gpu
 
-done
+if [ "$got_gpu" == "y" ] || [ "$got_gpu" == "Y" ]; then
+    distro="${distro}gpu"
+else
+    distro="${distro}nogpu"
+fi
+
+
+echo "SWIFT BUILD? y/n:"
+read swift_or_no
+
+if [ "$swift_or_no" == "y" ] || [ "$swift_or_no" == "Y" ]; then
+    distro="${distro}-swift"
+else
+    distro="${distro}-raw"
+fi
+
+
+echo "WITH AIRO PACKAGES? y/n:"
+read airo_pkg_or_no
+
+if [ "$airo_pkg_or_no" == "y" ] || [ "$airo_pkg_or_no" == "Y" ]; then
+    distro="${distro}-pkg"
+else
+    distro="${distro}-nopkg"
+fi
+
 
 echo "BUILDING $distro DOCKER IMAGE."
 
 docker build \
-    -f Dockerfile.$distro \
+    -f dkerfiles/Dockerfile.$distro \
     -t airo_noetic_lala:$distro .

@@ -1,2 +1,0 @@
-FROM airo_noetic_lala:temp
-ARG HOME=/root

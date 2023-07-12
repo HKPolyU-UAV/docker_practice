@@ -1,5 +1,5 @@
 FROM osrf/ros:noetic-desktop-full
-
+ENV DEBIAN_FRONTEND=noninteractive
 ARG HOME=/root
 
 # Pre-requisite
@@ -45,6 +45,11 @@ RUN echo "cd /usr/local/bin">> /ngrok.sh
 RUN echo "./ngrok tcp 6666">> /ngrok.sh
 RUN chmod +x ngrok.sh
 
-WORKDIR $HOME
+# GIT Update
+RUN sudo apt install software-properties-common -y
+RUN sudo add-apt-repository -y ppa:git-core/ppa
+RUN sudo apt update
+RUN sudo apt install git -y
 
+WORKDIR $HOME
 

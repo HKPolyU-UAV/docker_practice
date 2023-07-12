@@ -1,0 +1,6 @@
+FROM pattylo/airo_ros_noetic:gpu-raw-nopkg
+ENV DEBIAN_FRONTEND=noninteractive
+ARG HOME=/root
+
+WORKDIR $HOME
+
