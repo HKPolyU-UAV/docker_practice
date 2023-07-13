@@ -1,23 +1,42 @@
 #!/bin/bash
+echo "RUN AIRO DOCKER IMAGE"
 
-distro="swift"
+distro=""
 
-for (( i=1; i<=$#; i++));
-do
-  param="${!i}"
-  
-  if [ "$param" == "--swift" ]; then
-    distro="swift"
-  elif [ "$param" == "--raw" ]; then
-    distro="raw"
-  else
-    distro=${param:2:${#param}}
-  fi
+echo "GOT GPU? y/n:"
+read got_gpu
 
-done
+gpu_enabled="--gpus all"
+if [ "$got_gpu" == "y" ] || [ "$got_gpu" == "Y" ]; then
+    distro="${distro}gpu"
+else
+    distro="${distro}nogpu"
+    gpu_enabled=""
+fi
 
-# echo "yoh!"
-echo $distro
+echo "WITH AIRO PACKAGES? y/n:"
+read airo_pkg_or_no
+
+if [ "$airo_pkg_or_no" == "y" ] || [ "$airo_pkg_or_no" == "Y" ]; then
+    distro="${distro}-pkg"
+else
+    distro="${distro}-nopkg"
+fi
+
+# echo $distro
+# echo $gpu_enabled
+
+if [ "$(docker images -q airo_noetic_lala:$distro 2> /dev/null)" == "" ]; then
+    echo ""
+    echo "ERROR. PLEASE RUN ./build_lala.sh first!"
+    echo ""
+    exit 1
+else
+    echo ""
+    echo "NOW RUNNING IMAGE -> CONTAINER"
+    echo ""
+fi
+
 
 XSOCK=/tmp/.X11-unix
 XAUTH=/tmp/.docker.xauth
@@ -28,6 +47,7 @@ sudo docker run \
   -it \
   --network host \
   --privileged \
+  $gpu_enabled \
   --volume=$XSOCK:$XSOCK:rw \
   --volume=$XAUTH:$XAUTH:rw \
   --env="XAUTHORITY=${XAUTH}" \

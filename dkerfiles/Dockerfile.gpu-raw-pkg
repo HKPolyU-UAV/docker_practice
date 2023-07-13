@@ -1,4 +1,4 @@
-FROM pattylo/airo_ros_noetic:gpu-raw-nopkg
+FROM pattylo/airo_ros_noetic:gpu-nopkg
 ENV DEBIAN_FRONTEND=noninteractive
 ARG HOME=/root
 
@@ -25,6 +25,8 @@ RUN mkdir -p catkin_ws/src && cd ~/catkin_ws/src && \
     git clone https://github.com/HKPolyU-UAV/E2ES.git && \
     cd ~/catkin_ws/src/E2ES/3rdPartLib && \
     sudo ./install3rdPartLib.sh
+RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/catkin_ws/;\
+    catkin_make'
 
 
 # FLVIS
@@ -64,7 +66,7 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/camera_ws;\
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/camera_ws;\
     catkin_make install'
 
-RUN echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "source ~/camera_ws/devel/setup.bash" >> ~/.bashrc
 
 
 # AIRO-MPC
