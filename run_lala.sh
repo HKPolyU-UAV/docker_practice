@@ -54,5 +54,5 @@ sudo docker run \
   --env DISPLAY=$DISPLAY \
   --env TERM=xterm-256color \
   -v /dev:/dev \
-  pattylo/airo_ros_noetic:$distro \
+  airo_noetic_lala:$distro \
   /bin/bash 
