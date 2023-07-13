@@ -17,11 +17,11 @@ Below will first briefly elucidate what we have done to this poor image, and how
 
    You can install Docker Engine by following the setup bash command. In Ubuntu, we do not really need Docker Desktop. As we are not considerate people, we will not repeat the installation process here.
 
-2. **First either do ```./build_lala.sh --raw```, or ```./build_lala.sh --swift```.**
+2. **First either do ```./build_lala.sh```.**
 
-   The former will just simply repeat the building processing of the construction of ```airo_noetic:lala```, whereas the later could allow you to customize your own docker image based upon ```airo_noetic:lala``` and modify beyond.
+   The shell file will spit out some instruction, and just select what you want. In our supported image, we provide **with/without GPU, with/without AIRO packages**. Additionally, if you do not want to build from the start, you can select **swift** to accelerate the building time.
 
-3. **Then, to create one container, do```./run_lala.sh --{build_arg} # build_arg = raw || swift```.**
+3. **Then, to create one container, do```./run_lala.sh```.**
 
 
 4. **Change passcode.**
@@ -33,7 +33,7 @@ Below will first briefly elucidate what we have done to this poor image, and how
    to set the root passcode.
    
 5. (Optional)
-   You can refer to [Dockerfile.lala](/Dockerfile.raw) to see what building arguments we put there.
+   You can refer to [Dockerfile.lala](/dkerfiles/Dockerfile.gpu-raw-pkg) to see what building arguments we put there.
    After the image is built, a few things could be used directly:
    ```
    tmux
@@ -62,7 +62,7 @@ Below will first briefly elucidate what we have done to this poor image, and how
 
 2. **Check visualization** 
    
-   Run ```xclock``` and see whether there is a tiny little clock appears like this:
+   Run ```xclock #install x11-apps``` and see whether there is a tiny little clock appears like this:
     
     ![alt text](media/xclock.jpg).
 
