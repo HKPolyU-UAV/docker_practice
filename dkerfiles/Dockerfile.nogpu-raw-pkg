@@ -92,6 +92,7 @@ RUN sudo apt install software-properties-common && sudo add-apt-repository ppa:d
     sudo apt-get install python3.7-tk -y && pip install -e ~/acados/interfaces/acados_template && \
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/root/acados/lib"' >> ~/.bashrc && \
     echo 'export ACADOS_SOURCE_DIR="/root/acados"' >> ~/.bashrc
+RUN sudo apt install tmuxinator -y
 
 # AIRo_Trajectory
 
