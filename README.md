@@ -47,6 +47,9 @@ Below will first briefly elucidate what we have done to this poor image, and how
 
    If you want a more detailed description of the above image, please refer to [this](/README_legacy.md).
 
+6. (Optional)
+   If you want to use GPU programming, please run ```./lala_nvidia.sh```
+
 
 ## What you should test.
 ### You need to do something now!

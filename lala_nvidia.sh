@@ -17,5 +17,5 @@ sudo docker run \
   --env DISPLAY=$DISPLAY \
   --env TERM=xterm-256color \
   -v /dev:/dev \
-  testhaha:opencv4.7 \
+  pattylo/airo_gpu:lala \
   /bin/bash 
