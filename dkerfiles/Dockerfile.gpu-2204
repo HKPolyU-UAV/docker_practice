@@ -1,0 +1,2 @@
+FROM nvidia/opengl:1.0-glvnd-runtime-ubuntu22.04
+
