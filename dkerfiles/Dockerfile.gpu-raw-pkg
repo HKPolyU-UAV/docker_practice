@@ -81,7 +81,9 @@ RUN mkdir -p ~/airo_control_interface_ws/src && \
     cd ~/airo_control_interface_ws
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/airo_control_interface_ws/;\
     catkin_make'
-RUN cd ~/airo_control_interface_ws/src && git clone https://github.com/HKPolyU-UAV/airo_control_interface.git && \
+RUN cd ~/airo_control_interface_ws/src 
+RUN git clone https://github.com/HKPolyU-UAV/airo_control_interface.git  
+RUN git checkout 1981f5f83449a9d43e5971ba669ba2158f5d9794 && \
     cd ~/airo_control_interface_ws
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/airo_control_interface_ws/;\
     catkin_make'
