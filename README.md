@@ -49,7 +49,8 @@ Below will first briefly elucidate what we have done to this poor image, and how
 
 6. (Optional)
    If you want to use GPU programming, please run ```./lala_nvidia.sh```
-
+7. (Update)
+   Use ```cleanup.sh``` when you encounter ```.XAuth...``` -related bug. We did not really figure out the main reason for this, but was able to work our way out by doing ```./cleanup.sh```.
 
 ## What you should test.
 ### You need to do something now!
