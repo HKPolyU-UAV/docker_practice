@@ -1,4 +1,5 @@
 #!/bin/bash
+# build image
 echo "RUN AIRO DOCKER IMAGE"
 
 distro=""
