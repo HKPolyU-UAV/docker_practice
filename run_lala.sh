@@ -1,5 +1,5 @@
 #!/bin/bash
-# build image
+# build container
 echo "RUN AIRO DOCKER IMAGE"
 
 distro=""
