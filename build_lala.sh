@@ -25,7 +25,7 @@ else
 fi
 
 
-echo "WITH AIRO PACKAGES? y/n:"
+echo "WITH AIRO DEFAULT PACKAGES? y/n:"
 read airo_pkg_or_no
 
 if [ "$airo_pkg_or_no" == "y" ] || [ "$airo_pkg_or_no" == "Y" ]; then
