@@ -14,8 +14,7 @@ RUN sudo apt-get -y install ros-noetic-mavros \
     python3-pip \
     python3-testresources \
     libignition-math4 \
-    libgazebo11-dev \
-    gedit
+    libgazebo11-dev 
 
 RUN pip3 install --user empy toml numpy packaging jinja2
 RUN pip3 install numpy toml empy packaging
@@ -106,3 +105,5 @@ RUN mkdir -p ~/airo_trajectory_ws/src && \
 RUN /bin/bash -c '. /opt/ros/noetic/setup.bash;. ~/airo_control_interface_ws/devel/setup.bash; cd ~/airo_trajectory_ws/;\
     catkin_make'
 RUN echo "source ~/airo_trajectory_ws/devel/setup.bash" >> ~/.bashrc
+
+RUN sudo apt-get update && sudo apt-get -y install gedit
