@@ -1,5 +1,33 @@
 # Docker Practice of AIRO Lab
-<p align="justify">With the increasing number of lab members, we are now enforcing a new practice of Docker on publich computing devives, i.e., for all members that wish to use lab machines (including GPU server, UAV/UGV onboard computers, or even UUV in the future), will be required to use Docker container to run their code. The following are the reasons:</p>
+
+## Abstract
+
+I blabbered a lot in this ```README.md``` below, to save you some time, here's a short summary:
+
+0. **install** 
+
+   refer to this [site](https://docs.docker.com/engine/install/ubuntu/).
+1. **to build** (create image)
+   ```
+   ./build_lala.sh
+   ```
+2. **to run** (image -> container)
+   ```
+   ./run_lala.sh
+   ```
+3. **to run custom** (custom image -> container)
+   ```
+   ./run_hehe.sh {image_name}
+   ```
+4. **to debug xAUTH-related error** 
+   ```
+   ./cleanup.sh
+   ```
+
+VOILA! Now off you go! For Docker commandline cheatsheet, please refer to [here](#side-note) or [here](https://github.com/HKPolyU-UAV/VICON2023/tree/master/docker#docker-commandline-cheatsheet)
+
+## Intro
+<p align="justify">With the increasing number of lab members, we are now enforcing a new practice of Docker on public computing devives, i.e., for all members that wish to use lab machines (including GPU server, UAV/UGV onboard computers, or even UUV in the future), will be required to use Docker container to run their code. The following are the reasons:</p>
 
 - repeating setups for environs are no more needed.
 - clashes between libraries could be prevented.
@@ -146,6 +174,7 @@ Below will first briefly elucidate what we have done to this poor image, and how
     docker start {container_name} # start container
     docker attach {container_name} # attach to a container, namely, get inside the container
     docker exec -it {container_name} /bin/bash # attach to the same container without echoing the same commandline
+    ctrl + p then ctrl + q to detach from docker
     exit # exit container
 
     docker commit {container_name} {new_image_name} 
