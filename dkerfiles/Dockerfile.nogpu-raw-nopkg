@@ -51,5 +51,11 @@ RUN sudo add-apt-repository -y ppa:git-core/ppa
 RUN sudo apt update
 RUN sudo apt install git -y
 
+# VRPN
+RUN sudo apt-get update && sudo apt-get -y install ros-noetic-vrpn ros-noetic-vrpn-client-ros
+
+# Other pkgs
+RUN sudo apt-get update && sudo apt-get -y install gedit
+
 WORKDIR $HOME
 

@@ -67,5 +67,3 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/camera_ws;\
     catkin_make install'
 
 RUN echo "source ~/camera_ws/devel/setup.bash" >> ~/.bashrc
-
-RUN sudo apt-get update && sudo apt-get -y install gedit
