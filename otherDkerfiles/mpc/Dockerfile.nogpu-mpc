@@ -90,9 +90,9 @@ RUN /bin/bash -c '. /opt/ros/noetic/setup.bash; cd ~/airo_control_interface_ws/;
     catkin_make'
 RUN echo "source ~/airo_control_interface_ws/devel/setup.bash" >> ~/.bashrc
 
-RUN sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install python3.7 -y && \
-    python3 -m pip install pip && sudo pip3 install numpy matplotlib scipy future-fstrings casadi>=3.5.1 setuptools && \
-    sudo apt-get install python3.7-tk -y && pip install -e ~/acados/interfaces/acados_template && \
+RUN sudo apt install -y software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt update && sudo apt install python3.7 -y
+RUN python3 -m pip install pip && sudo pip3 install numpy matplotlib scipy future-fstrings casadi>=3.5.1 setuptools 
+RUN sudo apt-get install python3.7-tk -y && pip install -e ~/acados/interfaces/acados_template && \
     echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"/root/acados/lib"' >> ~/.bashrc && \
     echo 'export ACADOS_SOURCE_DIR="/root/acados"' >> ~/.bashrc
 RUN sudo apt install tmuxinator -y
