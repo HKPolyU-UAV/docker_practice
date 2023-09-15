@@ -59,6 +59,9 @@ Below will first briefly elucidate what we have done to this poor image, and how
    echo -e "0000\n0000" | passwd root
    ```
    to set the root passcode.
+
+4. (Optional)
+   To run more packages from us, please refer to [this repo](https://github.com/HKPolyU-UAV/airo_docker_lib.git) for installation.
    
 5. (Optional)
    You can refer to [Dockerfile.lala](/dkerfiles/Dockerfile.gpu-raw-pkg) to see what building arguments we put there.
