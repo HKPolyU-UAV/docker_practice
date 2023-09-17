@@ -49,7 +49,7 @@ Below will first briefly elucidate what we have done to this poor image, and how
 
    The shell file will spit out some instruction, and just select what you want. In our supported image, we provide **with/without GPU, with/without AIRO packages**. Additionally, if you do not want to build from the start, you can select **swift** to accelerate the building time.
 
-3. **Then, to create one container, do```./run_lala.sh```.**
+3. **Then, to create one container, do ```./run_lala.sh```.**
 
 
 4. **Change passcode.**
