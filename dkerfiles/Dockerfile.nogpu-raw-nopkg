@@ -57,5 +57,7 @@ RUN sudo apt-get update && sudo apt-get -y install ros-noetic-vrpn ros-noetic-vr
 # Other pkgs
 RUN sudo apt-get update && sudo apt-get -y install gedit
 
+RUN echo 'root:0000' | chpasswd
+
 WORKDIR $HOME
 

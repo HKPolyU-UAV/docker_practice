@@ -79,5 +79,7 @@ RUN echo "source \"/opt/ros/noetic/setup.bash\"" >> ros_entrypoint.sh
 RUN echo "exec \"\$@\"" >> ros_entrypoint.sh
 RUN chmod +x ros_entrypoint.sh
 
+RUN echo 'root:0000' | chpasswd
+
 WORKDIR $HOME
 ENTRYPOINT ["/ros_entrypoint.sh"]
